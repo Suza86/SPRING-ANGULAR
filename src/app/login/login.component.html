@@ -1,0 +1,47 @@
+
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+</div>
+
+<div [hidden]="submitted" style="width: 400px;">
+  <h2>Login</h2>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group">
+        <label for="name">First Name</label>
+      <input placeholder="Enter first name" id="name" name="name" class="form-control" required [(ngModel)]="user.name" #name="ngModel"/>
+    </div>
+    <div class="form-group">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="alert alert-danger">
+        <div *ngIf="name.errors.required">  Name is required. </div>
+      </div>
+    </div>
+
+     <div class="form-group">
+        <label for="lastName">Last Name</label>
+      <input placeholder="Enter last name" id="lastname" name="lastname" class="form-control" required [(ngModel)]="user.lastname" #lastname="ngModel"/>
+    </div>
+    <div class="form-group">
+      <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+          class="alert alert-danger">
+        <div *ngIf="lastname.errors.required">  Last name is required. </div>
+      </div>
+    </div>
+
+       <div class="form-group" >
+        <label for="birthdate">Date of birth</label>
+      <input type="date" placeholder="yyyy-MM-dd" id="birthdate" name="birthdate" class="form-control" required [(ngModel)]="user.birthdate" #birthdate="ngModel"/>
+    </div>
+    <div class="form-group">
+      <div *ngIf="birthdate.invalid && (birthdate.dirty || birthdate.touched)"
+          class="alert alert-danger">
+        <div *ngIf="birthdate.errors.required">  Date of birth is required. </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid">Submit</button>
+    </div>
+  </form>
+</div>
